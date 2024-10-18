@@ -25,6 +25,19 @@ fun testJoinStrings() {
     }
 }
 
+fun measureTime(action: () -> Unit): Long {
+    val startTime = System.currentTimeMillis()
+    action()
+    val endTime = System.currentTimeMillis()
+    return endTime - startTime
+}
+fun longRunningTask() {
+    for (i in 1..1000000) {
+
+        print("")
+    }
+}
+
 fun main() {
     println(sumOfNumbers(1, 2, 3, 4, 5))
 
@@ -32,4 +45,9 @@ fun main() {
     println(joinStrings("str1", "str2", "str3", separator = ','))
 
     testJoinStrings()
+
+    val executionTime = measureTime {
+        longRunningTask()
+    }
+    println("Время выполнения: $executionTime миллисекунд")
 }
